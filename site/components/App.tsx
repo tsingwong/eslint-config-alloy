@@ -4,12 +4,12 @@ import ReactTooltip = require('react-tooltip');
 
 const { useState, useEffect } = React;
 
-import { RuleNamespaces } from '../constants/rule';
+import { RuleNamespaces, RuleVueNamespaces } from '../constants/rule';
 import { GitHubCorner } from './GitHubCorner';
 import { RuleTable } from './RuleTable';
 
 export const App: React.SFC = () => {
-    const [namespace, updateNamespace] = useState<RuleNamespaces>('index');
+    const [namespace, updateNamespace] = useState<RuleVueNamespaces>('all');
     const [shouldHideOff, toggleShouldHideOff] = useState(false);
 
     useEffect(() => {
@@ -23,12 +23,13 @@ export const App: React.SFC = () => {
                 <form className="top-gap site-form">
                     <select
                         value={namespace}
-                        onChange={(e) => updateNamespace(e.target.value as RuleNamespaces)}
+                        onChange={(e) => updateNamespace(e.target.value as RuleVueNamespaces)}
                     >
-                        <option value="index">标准规则</option>
-                        <option value="react">React</option>
-                        <option value="vue">Vue</option>
-                        <option value="typescript">TypeScript</option>
+                        <option value="all">全部</option>
+                        <option value="PriorityA">PriorityA</option>
+                        <option value="PriorityB">PriorityB</option>
+                        <option value="PriorityC">PriorityC</option>
+                        <option value="Uncategorized">Uncategorized</option>
                     </select>
                     <label>
                         <input

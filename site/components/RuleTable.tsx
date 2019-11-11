@@ -1,13 +1,22 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 import React from 'react';
 
-import { Rule, RuleNamespaces, RuleNamespacePrismLanguageMap } from '../constants/rule';
-import { parseDescription } from '../utils';
+import { Rule, RuleNamespaces, RuleVueNamespaces, RuleVueConfigKey } from '../constants/rule';
+import { parseDescription, ConfigMapFilter } from '../utils';
 
 interface RuleTableProps {
-    namespace: RuleNamespaces;
+    namespace: RuleVueNamespaces;
     shouldHideOff: boolean;
 }
+
+let VueConfigMap: RuleVueConfigKey = {
+    all: require('../config/vue.json'),
+    PriorityA: ConfigMapFilter(require('../config/vue.json'), 'Priority A'),
+    PriorityB: ConfigMapFilter(require('../config/vue.json'), 'Priority B'),
+    PriorityC: ConfigMapFilter(require('../config/vue.json'), 'Priority C'),
+    Uncategorized: ConfigMapFilter(require('../config/vue.json'), 'Uncategorized')
+};
+console.log(Object.values(VueConfigMap.Uncategorized));
 
 const configMap: {
     [key in RuleNamespaces]: {
@@ -20,23 +29,16 @@ const configMap: {
     typescript: require('../config/typescript.json')
 };
 
-const docsUrlMap: { [key in RuleNamespaces]: (rule: string) => string } = {
-    index: (rule) => `https://eslint.org/docs/rules/${rule}`,
-    react: (rule) =>
-        `https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/${rule.replace(
-            /.*\//,
-            ''
-        )}.md`,
-    vue: (rule) => `https://eslint.vuejs.org/rules/${rule.replace(/.*\//, '')}.html`,
-    typescript: (rule) =>
-        `https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/${rule.replace(
-            /.*\//,
-            ''
-        )}.md`
+const docsUrlMap: { [key in RuleVueNamespaces]: (rule: string) => string } = {
+    all: (rule) => `https://eslint.vuejs.org/rules/${rule.replace(/.*\//, '')}.html`,
+    PriorityA: (rule) => `https://eslint.vuejs.org/rules/${rule.replace(/.*\//, '')}.html`,
+    PriorityB: (rule) => `https://eslint.vuejs.org/rules/${rule.replace(/.*\//, '')}.html`,
+    PriorityC: (rule) => `https://eslint.vuejs.org/rules/${rule.replace(/.*\//, '')}.html`,
+    Uncategorized: (rule) => `https://eslint.vuejs.org/rules/${rule.replace(/.*\//, '')}.html`
 };
 
 export const RuleTable: React.SFC<RuleTableProps> = ({ namespace, shouldHideOff }) => {
-    const currentConfig = configMap[namespace];
+    const currentConfig = VueConfigMap[namespace];
     return (
         <div className="container-fluid">
             <div className="flex-left flex-wrap units-gap hide-on-mobile">
@@ -49,7 +51,7 @@ export const RuleTable: React.SFC<RuleTableProps> = ({ namespace, shouldHideOff 
                 </h3>
             </div>
             {Object.values(currentConfig).map(
-                ({ name, value, description, reason, badExample, goodExample }) => (
+                ({ name, value, description, reason, badExample, goodExample, from }) => (
                     <div
                         key={name}
                         className={`flex-left flex-wrap top-gap-big units-gap site-row ${
@@ -65,6 +67,7 @@ export const RuleTable: React.SFC<RuleTableProps> = ({ namespace, shouldHideOff 
                     >
                         <div className="unit-1-3 unit-1-on-mobile site-desc">
                             <a href={docsUrlMap[namespace](name)}>{name}</a>
+                            <p>该规则来自 {from}</p>
                             <p
                                 className="top-gap-0"
                                 dangerouslySetInnerHTML={{
@@ -101,9 +104,7 @@ export const RuleTable: React.SFC<RuleTableProps> = ({ namespace, shouldHideOff 
                         </div>
                         <div className="unit-1-3 unit-1-on-mobile">
                             {badExample && (
-                                <pre
-                                    className={`language-${RuleNamespacePrismLanguageMap[namespace]} site-code`}
-                                >
+                                <pre className="language-html  site-code">
                                     <code
                                         dangerouslySetInnerHTML={{
                                             __html: badExample
@@ -114,9 +115,7 @@ export const RuleTable: React.SFC<RuleTableProps> = ({ namespace, shouldHideOff 
                         </div>
                         <div className="unit-1-3 unit-1-on-mobile">
                             {goodExample && (
-                                <pre
-                                    className={`language-${RuleNamespacePrismLanguageMap[namespace]}  site-code`}
-                                >
+                                <pre className="language-html  site-code">
                                     <code
                                         dangerouslySetInnerHTML={{
                                             __html: goodExample

@@ -160,7 +160,8 @@ class Builder {
             category: '',
             comments: '',
             badExample: '',
-            goodExample: ''
+            goodExample: '',
+            from: ''
         };
         if (comments !== null) {
             const commentsAST = doctrine.parse(comments[0], { unwrap: true });
