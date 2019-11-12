@@ -20,6 +20,29 @@ test/react/jsx-fragments/bad.js
 test/index/no-sequences/bad.js
 test/index/no-useless-rename/bad.js
 test/react/self-closing-comp/bad.js
+test/vue/html-closing-bracket-newline/*.vue
+test/vue/html-indent/*.vue
+test/vue/html-self-closing/*.vue
+test/vue/max-attributes-per-line/good.vue
+test/vue/multiline-html-element-content-newline/bad.vue
+test/vue/mustache-interpolation-spacing/*.vue
+test/vue/no-multi-spaces/bad.vue
+test/vue/no-spaces-around-equal-signs-in-attribute/bad.vue
+test/vue/singleline-html-element-content-newline/bad.vue
+test/vue/array-bracket-spacing/bad.vue
+test/vue/arrow-spacing/bad.vue
+test/vue/block-spacing/bad.vue
+test/vue/brace-style/bad.vue
+test/vue/comma-dangle/bad.vue
+test/vue/dot-location/bad.vue
+test/vue/key-spacing/bad.vue
+test/vue/keyword-spacing/bad.vue
+test/vue/object-curly-spacing/*.vue
+test/vue/script-indent/*.vue
+test/vue/space-infix-ops/bad.vue
+test/vue/space-unary-ops/bad.vue
+test/vue/html-closing-bracket-spacing/*.vue
+test/vue/html-end-tags/bad.vue
 
 ## Built-files
 .cache

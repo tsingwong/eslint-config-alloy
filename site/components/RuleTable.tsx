@@ -10,7 +10,8 @@ interface RuleTableProps {
 }
 
 let VueConfigMap: RuleVueConfigKey = {
-    all: require('../config/vue.json'),
+    All: require('../config/vue.json'),
+    Base: ConfigMapFilter(require('../config/vue.json'), 'Base Rules'),
     PriorityA: ConfigMapFilter(require('../config/vue.json'), 'Priority A'),
     PriorityB: ConfigMapFilter(require('../config/vue.json'), 'Priority B'),
     PriorityC: ConfigMapFilter(require('../config/vue.json'), 'Priority C'),
@@ -30,7 +31,8 @@ const configMap: {
 };
 
 const docsUrlMap: { [key in RuleVueNamespaces]: (rule: string) => string } = {
-    all: (rule) => `https://eslint.vuejs.org/rules/${rule.replace(/.*\//, '')}.html`,
+    All: (rule) => `https://eslint.vuejs.org/rules/${rule.replace(/.*\//, '')}.html`,
+    Base: (rule) => `https://eslint.vuejs.org/rules/${rule.replace(/.*\//, '')}.html`,
     PriorityA: (rule) => `https://eslint.vuejs.org/rules/${rule.replace(/.*\//, '')}.html`,
     PriorityB: (rule) => `https://eslint.vuejs.org/rules/${rule.replace(/.*\//, '')}.html`,
     PriorityC: (rule) => `https://eslint.vuejs.org/rules/${rule.replace(/.*\//, '')}.html`,

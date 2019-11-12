@@ -1,6 +1,12 @@
 export type RuleNamespaces = 'index' | 'react' | 'vue' | 'typescript';
 
-export type RuleVueNamespaces = 'all' | 'PriorityA' | 'PriorityB' | 'PriorityC' | 'Uncategorized';
+export type RuleVueNamespaces =
+    | 'All'
+    | 'Base'
+    | 'PriorityA'
+    | 'PriorityB'
+    | 'PriorityC'
+    | 'Uncategorized';
 
 export const RuleNamespaceExtensionMap = {
     index: 'js',

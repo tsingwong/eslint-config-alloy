@@ -38,13 +38,16 @@ const badReport = cli.executeOnFiles([
 const badWhitelist = ['react/jsx-uses-react', 'react/jsx-uses-vars', 'vue/jsx-uses-vars'];
 
 badReport.results.forEach((badReportForOneFile) => {
-    const { errorCount, filePath, messages } = badReportForOneFile;
+    const { errorCount, warningCount, filePath, messages } = badReportForOneFile;
 
     const dirList = path.dirname(filePath).split(path.sep);
     const ruleName = dirList.pop();
     const rulePrefix = dirList.pop() as RulePrefix;
 
-    assert(errorCount > 0, `${filePath} should have at least one error`);
+    assert(
+        errorCount + warningCount > 0,
+        `${filePath} should have at least one error or one warning`
+    );
 
     messages.forEach((message) => {
         const fullRuleName = RULE_PREFIX_MAP[rulePrefix] + ruleName;

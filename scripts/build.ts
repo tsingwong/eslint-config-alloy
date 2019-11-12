@@ -252,7 +252,7 @@ class Builder {
 }
 
 const builder = new Builder();
-builder.build('index');
-builder.build('react');
+// builder.build('index');
+// builder.build('react');
 builder.build('vue');
-builder.build('typescript');
+// builder.build('typescript');
