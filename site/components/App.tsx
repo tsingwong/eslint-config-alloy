@@ -47,7 +47,7 @@ export const App: React.SFC = () => {
 
     return (
         <>
-            <GitHubCorner href="https://github.com/tsingwong/eslint-config-alloy" />
+            <GitHubCorner href="https://github.com/tsingwong/learn-eslint-plugin-vue" />
             {Header}
             <RuleTable namespace={namespace} shouldHideOff={shouldHideOff} />
             <ReactTooltip

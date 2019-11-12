@@ -1,7 +1,7 @@
 {
-    "name": "eslint-config-alloy",
-    "version": "3.1.0",
-    "description": "AlloyTeam ESLint 规则",
+    "name": "learn-eslint-plugin-vue",
+    "version": "0.0.1",
+    "description": "学习 eslint-plugin-vue 规则",
     "main": "index.js",
     "scripts": {
         "start": "npm run dev",
@@ -21,7 +21,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/AlloyTeam/eslint-config-alloy.git"
+        "url": "git+https://github.com/tsingwong/learn-eslint-plugin-vue.git"
     },
     "keywords": [
         "eslint",
@@ -45,9 +45,9 @@
     ],
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/AlloyTeam/eslint-config-alloy/issues"
+        "url": "https://github.com/tsingwong/learn-eslint-plugin-vue/issues"
     },
-    "homepage": "https://alloyteam.github.io/eslint-config-alloy/",
+    "homepage": "https://tsingwong.github.io/learn-eslint-plugin-vue/",
     "publishConfig": {
         "access": "public"
     },
