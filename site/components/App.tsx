@@ -4,12 +4,12 @@ import ReactTooltip = require('react-tooltip');
 
 const { useState, useEffect } = React;
 
-import { RuleNamespaces } from '../constants/rule';
+import { RuleNamespaces, RuleVueNamespaces } from '../constants/rule';
 import { GitHubCorner } from './GitHubCorner';
 import { RuleTable } from './RuleTable';
 
 export const App: React.SFC = () => {
-    const [namespace, updateNamespace] = useState<RuleNamespaces>('index');
+    const [namespace, updateNamespace] = useState<RuleVueNamespaces>('All');
     const [shouldHideOff, toggleShouldHideOff] = useState(false);
 
     useEffect(() => {
@@ -19,25 +19,27 @@ export const App: React.SFC = () => {
     const Header = (
         <div className="flex-center">
             <div className="container-fluid">
-                <h1>AlloyTeam ESLint 规则</h1>
+                <h1>eslint-plugin-vue 规则</h1>
                 <form className="top-gap site-form">
                     <select
                         value={namespace}
-                        onChange={(e) => updateNamespace(e.target.value as RuleNamespaces)}
+                        onChange={(e) => updateNamespace(e.target.value as RuleVueNamespaces)}
                     >
-                        <option value="index">标准规则</option>
-                        <option value="react">React</option>
-                        <option value="vue">Vue</option>
-                        <option value="typescript">TypeScript</option>
+                        <option value="All">全部</option>
+                        <option value="Base">Base</option>
+                        <option value="PriorityA">PriorityA</option>
+                        <option value="PriorityB">PriorityB</option>
+                        <option value="PriorityC">PriorityC</option>
+                        <option value="Uncategorized">Uncategorized</option>
                     </select>
-                    <label>
+                    {/* <label>
                         <input
                             type="checkbox"
                             checked={shouldHideOff}
                             onChange={(e) => toggleShouldHideOff(e.target.checked)}
                         />
                         隐藏已禁用的规则
-                    </label>
+                    </label> */}
                 </form>
             </div>
         </div>
@@ -45,7 +47,7 @@ export const App: React.SFC = () => {
 
     return (
         <>
-            <GitHubCorner href="https://github.com/AlloyTeam/eslint-config-alloy" />
+            <GitHubCorner href="https://github.com/tsingwong/eslint-config-alloy" />
             {Header}
             <RuleTable namespace={namespace} shouldHideOff={shouldHideOff} />
             <ReactTooltip

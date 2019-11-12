@@ -1,3 +1,4 @@
+import { Rule, RuleVueNamespaces, RuleVueConfigKey } from './constants/rule';
 /**
  * 解析描述或原因，转换 <, >, \n 等字符串
  * @param str 需要解析的文本
@@ -33,4 +34,20 @@ export function parseDescription(str: string) {
             .replace(/禁止/g, '<strong style="color:#db5757; font-weight:600;">$&</strong>')
             .replace(/必须/g, '<strong style="color:#267fd9; font-weight:600;">$&</strong>')
     );
+}
+
+/**
+ *  对象 filter
+ * @param str 关键词
+ */
+export function ConfigMapFilter(configMap: { [key: string]: Rule }, str: string) {
+    let ret: {
+        [key: string]: Rule;
+    } = {};
+    for (let [key, item] of Object.entries(configMap)) {
+        if (item.from === str) {
+            ret[key] = item;
+        }
+    }
+    return ret;
 }

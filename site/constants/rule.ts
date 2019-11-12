@@ -1,5 +1,13 @@
 export type RuleNamespaces = 'index' | 'react' | 'vue' | 'typescript';
 
+export type RuleVueNamespaces =
+    | 'All'
+    | 'Base'
+    | 'PriorityA'
+    | 'PriorityB'
+    | 'PriorityC'
+    | 'Uncategorized';
+
 export const RuleNamespaceExtensionMap = {
     index: 'js',
     react: 'js',
@@ -22,5 +30,12 @@ export interface Rule {
     comments: string;
     badExample?: string;
     goodExample?: string;
+    from?: string;
     [key: string]: string | boolean | undefined;
 }
+
+export type RuleVueConfigKey = {
+    [key in RuleVueNamespaces]: {
+        [key: string]: Rule;
+    };
+};
